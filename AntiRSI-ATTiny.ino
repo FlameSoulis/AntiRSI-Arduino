@@ -6,8 +6,8 @@
 
 //LED Handlers
 #define LED_HEARTBEAT 	0
-#define LED_MICROPAUSE	1
-#define LED_RESTBREAK   2
+#define LED_MICROPAUSE	3
+#define LED_RESTBREAK   4
 
 //Buzzer
 #define BUZZER_PORT	3
@@ -45,6 +45,18 @@ void setup() {
 	pinMode(LED_MICROPAUSE, OUTPUT);
 	pinMode(LED_RESTBREAK, OUTPUT);
 	pinMode(BUZZER_PORT, OUTPUT);
+
+  //Test Flash
+  byte a; bool b=true;
+  for(a=0;a<20;++a) {
+    b=!b;
+    digitalWrite(LED_MICROPAUSE,(b) ? HIGH : LOW);
+    digitalWrite(LED_RESTBREAK,(!b) ? HIGH : LOW);
+    delay(250);
+  }
+  //Reset to low and begin!
+  digitalWrite(LED_RESTBREAK, LOW);
+  digitalWrite(LED_MICROPAUSE, LOW);
 }
 
 void loop() {
